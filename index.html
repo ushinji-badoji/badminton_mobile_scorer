@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Badminton Score Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="mode-singles">
+    <div class="container">
+        <header>
+            <h2>バドミントン スコアー君</h2>
+            <div class="config-bar">
+                <select id="gameRule" onchange="initGame()">
+                    <option value="15-3">15点/3G</option>
+                    <option value="15-1">15点/1G</option>
+                    <option value="21-3">21点/3G</option>
+                    <option value="21-1">21点/1G</option>
+                </select>
+                <div class="match-type-selector">
+                    <button id="btnSingles" class="active" onclick="setMatchType('singles')">シングルス</button>
+                    <button id="btnDoubles" onclick="setMatchType('doubles')">ダブルス</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="status-bar">
+            <div id="gameCount">第 1 ゲーム</div>
+            <button class="btn-swap" onclick="manualSwapEnds()">⇄ エンド交代</button>
+        </div>
+
+        <div class="match-layout" id="matchLayout">
+            <div class="score-card-wrapper" id="wrapperA">
+                <div class="score-card" id="cardA" onclick="addPoint('A')">
+                    <div class="serving-indicator">SERVICE</div>
+                    <div class="set-dots" id="setDotsA"></div>
+                    <div class="score-display" id="scoreA">0</div>
+                    
+                    <div class="players-setup" onclick="event.stopPropagation()">
+                        <div class="player-row">
+                            <button class="role-btn" id="role_A_0" onclick="setRole('A', 0)">S</button>
+                            <input type="text" id="p_A_0" value="選手A1" oninput="updateUI()">
+                        </div>
+                        <div class="player-row doubles-only">
+                            <button class="role-btn" id="role_A_1" onclick="setRole('A', 1)">3</button>
+                            <input type="text" id="p_A_1" value="選手A2" oninput="updateUI()">
+                        </div>
+                    </div>
+                </div>
+                <div class="pos-info" id="posA"></div>
+            </div>
+
+            <div class="score-card-wrapper" id="wrapperB">
+                <div class="score-card" id="cardB" onclick="addPoint('B')">
+                    <div class="serving-indicator">SERVICE</div>
+                    <div class="set-dots" id="setDotsB"></div>
+                    <div class="score-display" id="scoreB">0</div>
+                    
+                    <div class="players-setup" onclick="event.stopPropagation()">
+                        <div class="player-row">
+                            <button class="role-btn" id="role_B_0" onclick="setRole('B', 0)">R</button>
+                            <input type="text" id="p_B_0" value="選手B1" oninput="updateUI()">
+                        </div>
+                        <div class="player-row doubles-only">
+                            <button class="role-btn" id="role_B_1" onclick="setRole('B', 1)">2</button>
+                            <input type="text" id="p_B_1" value="選手B2" oninput="updateUI()">
+                        </div>
+                    </div>
+                </div>
+                <div class="pos-info" id="posB"></div>
+            </div>
+        </div>
+
+        <div class="reason-bar">
+            <button onclick="setReason('スマッシュ')">スマッシュ</button>
+            <button onclick="setReason('ドロップ')">ドロップ</button>
+            <button onclick="setReason('クロス')">クロス</button>
+            <button onclick="setReason('クロスネット')">クロスネット</button>
+            <button onclick="setReason('ネットひっかけ')">ネットひっかけ</button>
+            <button onclick="setReason('サイドアウト')">サイドアウト</button>
+            <button onclick="setReason('バックアウト')">バックアウト</button>
+        </div>
+
+        <div class="log-container">
+            <ul id="historyLog"></ul>
+        </div>
+
+        <div class="footer-actions">
+            <button class="btn-reset" onclick="confirmReset()">リセット</button>
+            <button class="btn-csv" onclick="downloadCSV()">CSV保存</button>
+            <button class="btn-undo" onclick="undoPoint()">一つ戻る</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
