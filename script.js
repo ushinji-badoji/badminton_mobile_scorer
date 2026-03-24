@@ -216,6 +216,12 @@ function updateUI() {
         document.getElementById('posA').innerText = `位置: ${courtSideA}`;
         document.getElementById('posB').innerText = `位置: ${courtSideB}`;
     }
+
+    const activeServer = getCurrentServer();
+    const serverName = document.getElementById(`p_${activeServer.team}_${activeServer.idx}`).value;
+    document.getElementById('serverNameA').innerText = state.serverSide === 'A' ? `サーバー: ${serverName}` : '';
+    document.getElementById('serverNameB').innerText = state.serverSide === 'B' ? `サーバー: ${serverName}` : '';
+
     renderLog();
 }
 
@@ -244,7 +250,21 @@ function downloadCSV() {
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
-    link.download = `badminton_log_${new Date().getTime()}.csv`;
+    
+    const d = new Date();
+    const yy = String(d.getFullYear()).slice(-2);
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    const hh = String(d.getHours()).padStart(2, '0');
+    const min = String(d.getMinutes()).padStart(2, '0');
+    const dateStr = `${yy}${mm}${dd}${hh}${min}`;
+    
+    // ファイル名に使用できない文字をハイフンに置換
+    const sanitize = name => name.replace(/[\\/:*?"<>|]/g, '-');
+    const playersA = sanitize(getTeamDisplayName('A'));
+    const playersB = sanitize(getTeamDisplayName('B'));
+    
+    link.download = `${dateStr}_${playersA}vs${playersB}.csv`;
     link.click();
 }
 

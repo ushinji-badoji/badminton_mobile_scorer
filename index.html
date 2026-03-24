@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Badminton Score Pro</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="mode-singles">
     <div class="container">
         <header>
@@ -31,41 +33,41 @@
 
         <div class="match-layout" id="matchLayout">
             <div class="score-card-wrapper" id="wrapperA">
+                <div class="players-setup">
+                    <div class="player-row">
+                        <button class="role-btn" id="role_A_0" onclick="setRole('A', 0)">S</button>
+                        <input type="text" id="p_A_0" value="選手A1" oninput="updateUI()">
+                    </div>
+                    <div class="player-row doubles-only">
+                        <button class="role-btn" id="role_A_1" onclick="setRole('A', 1)">3</button>
+                        <input type="text" id="p_A_1" value="選手A2" oninput="updateUI()">
+                    </div>
+                </div>
                 <div class="score-card" id="cardA" onclick="addPoint('A')">
                     <div class="serving-indicator">SERVICE</div>
                     <div class="set-dots" id="setDotsA"></div>
                     <div class="score-display" id="scoreA">0</div>
-                    
-                    <div class="players-setup" onclick="event.stopPropagation()">
-                        <div class="player-row">
-                            <button class="role-btn" id="role_A_0" onclick="setRole('A', 0)">S</button>
-                            <input type="text" id="p_A_0" value="選手A1" oninput="updateUI()">
-                        </div>
-                        <div class="player-row doubles-only">
-                            <button class="role-btn" id="role_A_1" onclick="setRole('A', 1)">3</button>
-                            <input type="text" id="p_A_1" value="選手A2" oninput="updateUI()">
-                        </div>
-                    </div>
+                    <div class="server-name-display" id="serverNameA"></div>
                 </div>
                 <div class="pos-info" id="posA"></div>
             </div>
 
             <div class="score-card-wrapper" id="wrapperB">
+                <div class="players-setup">
+                    <div class="player-row">
+                        <button class="role-btn" id="role_B_0" onclick="setRole('B', 0)">R</button>
+                        <input type="text" id="p_B_0" value="選手B1" oninput="updateUI()">
+                    </div>
+                    <div class="player-row doubles-only">
+                        <button class="role-btn" id="role_B_1" onclick="setRole('B', 1)">2</button>
+                        <input type="text" id="p_B_1" value="選手B2" oninput="updateUI()">
+                    </div>
+                </div>
                 <div class="score-card" id="cardB" onclick="addPoint('B')">
                     <div class="serving-indicator">SERVICE</div>
                     <div class="set-dots" id="setDotsB"></div>
                     <div class="score-display" id="scoreB">0</div>
-                    
-                    <div class="players-setup" onclick="event.stopPropagation()">
-                        <div class="player-row">
-                            <button class="role-btn" id="role_B_0" onclick="setRole('B', 0)">R</button>
-                            <input type="text" id="p_B_0" value="選手B1" oninput="updateUI()">
-                        </div>
-                        <div class="player-row doubles-only">
-                            <button class="role-btn" id="role_B_1" onclick="setRole('B', 1)">2</button>
-                            <input type="text" id="p_B_1" value="選手B2" oninput="updateUI()">
-                        </div>
-                    </div>
+                    <div class="server-name-display" id="serverNameB"></div>
                 </div>
                 <div class="pos-info" id="posB"></div>
             </div>
@@ -76,6 +78,7 @@
             <button onclick="setReason('ドロップ')">ドロップ</button>
             <button onclick="setReason('クロス')">クロス</button>
             <button onclick="setReason('クロスネット')">クロスネット</button>
+            <button onclick="setReason('ネットイン')">ネットイン</button>
             <button onclick="setReason('ネットひっかけ')">ネットひっかけ</button>
             <button onclick="setReason('サイドアウト')">サイドアウト</button>
             <button onclick="setReason('バックアウト')">バックアウト</button>
@@ -93,4 +96,5 @@
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>

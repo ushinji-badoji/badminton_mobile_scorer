@@ -20,9 +20,11 @@ h2 { font-size: 1.1rem; margin: 0; color: var(--blue); }
 .score-card { flex: 1; background: white; border: 4px solid #eee; border-radius: 16px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 15px 0; touch-action: manipulation; cursor: pointer; }
 .score-card.serving { border-color: var(--blue); background: #f0f7ff; }
 .score-display { font-size: 5.5rem; font-weight: 900; line-height: 1; margin: 5px 0; color: #222; }
+.server-name-display { font-size: 1.1rem; font-weight: bold; color: var(--blue); visibility: hidden; margin-top: 5px; min-height: 1.5em; }
+.serving .server-name-display { visibility: visible; }
 
 /* 選手名入力欄と役割ボタン */
-.players-setup { display: flex; flex-direction: column; gap: 6px; width: 85%; max-width: 250px; margin-top: 5px; }
+.players-setup { display: flex; flex-direction: column; gap: 6px; width: 85%; max-width: 250px; margin: 0 auto 10px auto; }
 .player-row { display: flex; align-items: center; gap: 8px; }
 .role-btn { 
     width: 30px; height: 30px; border-radius: 6px; border: none; font-weight: bold; 
